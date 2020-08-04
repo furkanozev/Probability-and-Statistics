@@ -1,0 +1,348 @@
+\documentclass[a4 paper]{article}
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[ruled]{algorithm2e}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage{booktabs}
+\usepackage{array}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\homework}[6]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf MATH 118:~Statistics and Probability \hfill {\small (#2)}} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: {\rm #3} \hfill Name: {\color{teal}{Furkan \"OZEV\rm #5}} \hfill Student Id: {\color{teal}{161044036 \rm #6}}} \hfill}
+       \hbox to 6.28in { {\it Assistant: #4  \hfill #6}}
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#5 -- #1}{#5 -- #1}
+   \vspace*{4mm}
+}
+
+\newcommand{\problem}[2]{~\\\fbox{\textbf{Problem #1}}\hfill (#2 points)\newline\newline}
+\newcommand{\subproblem}[1]{~\newline\textbf{(#1)}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\VS}{\textrm{VS}}
+\newcommand{\solution}{~\newline\textbf{\textit{(Solution)}} }
+
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\0}{\mathbf{0}}
+
+
+\begin{document}
+\homework{Homework \#2}{Due: 26/04/20}{Dr. Zafeirakis Zafeirakopoulos}{Gizem S\"ung\"u}{}{}
+\textbf{Course Policy}: Read all the instructions below carefully before you start working on the assignment, and before you make a submission.
+\begin{itemize}
+\item It is not a group homework. Do not share your answers to anyone in any circumstance. Any cheating means at least -100 for both sides. 
+\item Do not take any information from Internet.
+\item No late homework will be accepted. 
+\item For any questions about the homework, send an email to gizemsungu@gtu.edu.tr.
+\item Submit your homework (both your latex and pdf files in a zip file) into the course page of Moodle.
+\item Save your latex, pdf and zip files as "Name\_Surname\_StudentId".\{tex, pdf, zip\}.
+\item The deadline of the homework is 26/04/20 23:55.
+\end{itemize}
+
+\problem{1:}{10}
+Suppose that you are inspecting a lot of 1000 surgical masks, among which 20 are used. You choose two masks randomly from the lot without replacement. Let\\
+
+$X_1$ =     $\left\{ 
+                \begin{array}{rc}
+                     1, &  \text{if the 1st surgical mask is used},\\
+                              &\\
+                      0, & \text{otherwise}
+                 \end{array}
+            \right.$
+            
+\bigskip
+
+$X_2$ =     $\left\{ 
+                \begin{array}{rc}
+                     1, &  \text{if the 2nd surgical mask is used},\\
+                              &\\
+                      0, & \text{otherwise}
+                 \end{array}
+            \right.$
+\bigskip
+
+Find the probability that at least one surgical mask chosen is used. \\
+\newline {\color{olive} $\blacklozenge$ There are 3 different situations for at least 1 mask to be used.} \newline 
+\newline {\color{violet} $\Rightarrow$ P(First mask is used and Second mask is unused) = P($X_1$ = 1, $X_2$ = 0)}
+\newline {\color{violet} $\Rightarrow$ P(First mask is unused and Second mask is used) = P($X_1$ = 0, $X_2$ = 1)}
+\newline {\color{violet} $\Rightarrow$ P(First and Second mask are used) = P($X_1$ = 1, $X_2$ = 1)}
+\newline \newline {\color{blue} The probability that at least one of chosen surgical mask is used:}
+\newline {\color{blue} P($X_1$ = 1, $X_2$ = 0) + P($X_1$ = 0, $X_2$ = 1) + P($X_1$ = 1, $X_2$ = 1)}
+\newline \newline {\color{violet} $\blacklozenge$ 1.) P($X_1$ = 1, $X_2$ = 0) = P($X_1$ = 1).P($X_2$ = 0 $|$ $X_1$ = 1)}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of 20 used surgical masks among 1000 surgical masks: $\frac{20}{1000}$}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of remaining 980 unused surgical masks, among remaining 999 surgical masks: $\frac{980}{999}$}
+\newline {\color{violet} $\Rightarrow$ P($X_1$ = 1).P($X_2$ = 0 $|$ $X_1$ = 1) = $\frac{20}{1000}$.$\frac{980}{999}$}
+\newline \newline {\color{violet} $\blacklozenge$ 2.) P($X_1$ = 0, $X_2$ = 1) = P($X_1$ = 0).P($X_2$ = 1 $|$ $X_1$ = 0)}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of 980 unused surgical masks among 1000 surgical masks: $\frac{980}{1000}$}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of remaining 20 used surgical masks, among remaining 999 surgical masks: $\frac{20}{999}$}
+\newline {\color{violet} $\Rightarrow$  P($X_1$ = 0).P($X_2$ = 1 $|$ $X_1$ = 0) = $\frac{980}{1000}$.$\frac{20}{999}$}
+\newline \newline {\color{violet} $\blacklozenge$ 3.) P($X_1$ = 1, $X_2$ = 1) = P($X_1$ = 1).P($X_2$ = 1 $|$ $X_1$ = 1)}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of 20 used surgical masks among 1000 surgical masks: $\frac{20}{1000}$}
+\newline {\color{violet} $\Rightarrow$ Probability of chosen 1 of remaining 20 used surgical masks, among remaining 999 surgical masks: $\frac{19}{999}$}
+\newline {\color{violet} $\Rightarrow$  P($X_1$ = 1).P($X_2$ = 1 $|$ $X_1$ = 1) = $\frac{20}{1000}$.$\frac{19}{999}$}
+\newline \newline {\color{blue} The probability that at least one of chosen surgical mask is used:}
+\newline {\color{blue} = P($X_1$ = 1, $X_2$ = 0) + P($X_1$ = 0, $X_2$ = 1) + P($X_1$ = 1, $X_2$ = 1)}
+\newline {\color{olive} = $\frac{20}{1000}$.$\frac{980}{999}$ + $\frac{980}{1000}$.$\frac{20}{999}$ + $\frac{20}{1000}$.$\frac{19}{999}$}
+\newline {\color{olive} = 0,039620}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0,039620}
+\newline
+
+\problem{2:}{8+8=16}
+Suppose X and Y are random variables with P(X = 1) = P(X = -1) = $\frac{1}{2}$; P(Y = 1) = P(Y = -1) = $\frac{1}{2}$. Let c = P(X = 1 and Y = 1).\\
+
+\subproblem{a} Determine the joint distribution of X and Y, Cov(X, Y), and Cor(X, Y).\\
+\newline {\color{olive} $\blacklozenge$ Marginal distributions allow us to determine the joint distribution of X and Y in c:}
+\begin{center}
+\begin{tabular}{ | m{1cm} | m{1cm}| m{1cm} | m{1cm} | } 
+\hline
+Y$\backslash$X& 1 & -1 &  \\ 
+\hline
+1 & c & .5 $-$ c & .5 \\ 
+\hline
+-1 & .5 $-$ c & c & .5 \\
+\hline
+ & .5 & .5 & \\ 
+\hline
+\end{tabular}
+\end{center}
+{\color{teal} $\blacklozenge$ E(X) = 0, E(Y) = 0, Var(X) = 1, Var(Y) = 1}
+\newline \newline {\color{violet} E(XY) = (1 . 1)c + ($-1$ . 1)(.5 $-$ c) + (1 · $-1$)(.5 - c) + ($-1$ · $-1$)c}
+\newline {\color{violet} =  4c$-$1}
+\newline \newline {\color{violet} Cor(X,Y) = E(XY) $-$ E(X).E(Y) = 4c$-$1}
+\newline {\color{violet} Cor(X,Y) = $\frac{Cor(X,Y)}{\sigma x \sigma y}$ = 4c$-$1}
+\newline
+\subproblem{b} For what value(s) of c are X and Y independent? For what value(s) of c are X and Y 100\% correlated?\\
+\newline {\color{teal} $\blacklozenge$  Note that the correlation runs from $-$1 to 1 as c runs from 0 to .5}
+\newline {\color{violet} $\Rightarrow$ Cov(X, Y) must be equal 0 for X and Y to be independent. }
+\newline {\color{violet} $\Rightarrow$ This only happens when c = $\frac{1}{4}$}
+\newline {\color{violet} $\Rightarrow$ In this case, it is easy to check if all four possibilities in the table are 0.5 and 4.}
+\newline {\color{violet} $\Rightarrow$ When c = 0 the correlation is $-$1, which means X and Y are fully correlated.}
+\newline {\color{violet} $\Rightarrow$ When c = 0.5 the correlation is 1.0 and X and Y are fully correlated.}
+\newline \newline {\color{green} $\Rightarrow$ Result: c = 0 and c = 0.5}
+\bigskip
+\bigskip
+\newpage
+\problem{3:}{4+4+4+4+4+4=24}
+In the information security department in a software company, a single crucial program works only 85\% of the time. In order to enhance the reliability of the system, it is decided that 3 programs will be installed in parallel such that the system fails only if they all fail. Assume the programs act independently and that they are equivalent in the sense that all 3 of them have an 85\% success rate. Consider the random variable X as the number of components out of 3 that fail.\\
+
+\subproblem{a} Write out a probability function for the random variable $X$.\\
+\newline {\color{olive} $\blacklozenge$ There are only two possible results for each component.}
+\newline {\color{olive} $\blacklozenge$ It is either working or not.}
+\newline {\color{olive} $\blacklozenge$ This means that we can solve this problem using the concept of binomial probability distribution.}
+\newline \newline {\color{teal} $\blacklozenge$  The binomial probability is probability of x success in repeated n attempts and X can have only two outcomes.}
+\newline {\color{teal} $\blacklozenge$  P(X = x) = ${n}\choose{x}$.$p^x$.$(1-p)^{n-x}$}
+\newline {\color{teal} $\blacklozenge$  In this problem failure happens chance is 0,15, so p = 0,15.}
+\newline {\color{teal} $\blacklozenge$  There are 3 programs, so n = 3.}
+\newline \newline {\color{violet} $\Rightarrow$ $f(x)$ =  ${3}\choose{x}$.$(0,15)^x$.$(1-0,15)^{3-x}$}
+\newline {\color{violet} $\Rightarrow$ $f(x)$ =  ${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$}
+\newline \newline {\color{green} $\Rightarrow$ Result: $f(x)$ =  ${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$}
+\newline
+\subproblem{b} What is $E(X)$ (i.e., the mean number of programs out of 3 that fail)?\\
+\newline {\color{olive} $\blacklozenge$ According to formula: E(X) = $\sum_{x=0}^{n} x.f(x)$}
+\newline {\color{olive} $\blacklozenge$ So, E(X) = $\sum_{x=0}^{3}$ x.${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$}
+\newline \newline {\color{violet} $\Rightarrow$ For x=0,    $\space$ 0.${3}\choose{0}$.$(0.15)^0$.$(0.85)^{3-0}$}
+\newline {\color{violet} $\space$ $\space$ = 0.1.1.(0,6141) = 0}
+\newline \newline {\color{violet} $\Rightarrow$ For x=1,    $\space$ 1.${3}\choose{1}$.$(0,15)^1$.$(0,85)^{3-1}$}
+\newline {\color{violet} $\space$ $\space$ = 1.3.(0,15).(0,7225) = (0,3251)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=2,    $\space$ 2.${3}\choose{2}$.$(0,15)^2$.$(0,85)^{3-2}$}
+\newline {\color{violet} $\space$ $\space$ = 2.3.(0,0225).(0,85) = (0,1148)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=3,    $\space$ 3.${3}\choose{3}$.$(0,15)^3$.$(0,85)^{3-3}$}
+\newline {\color{violet} $\space$ $\space$ = 3.1.(0,0034).1 = (0,0102)}
+\newline \newline {\color{teal} $\blacklozenge$  E(X) = $\sum_{x=0}^{3}$ x.${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$ = 0 + (0,3251) + (0,1148) + (0,0102) = 0,4501}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,4501}
+\newline
+\subproblem{c} What is Var(X)?\\
+\newline {\color{olive} $\blacklozenge$ According to formula: Var(X) = E($X^2$) - $(E(X))^2$}
+\newline {\color{olive} $\blacklozenge$ E(X) was calculated, E(X) = 0,4501}
+\newline {\color{olive} $\blacklozenge$ According to formula: E($X^2$) = $\sum_{x=0}^{n} x^2.f(x)$}
+\newline {\color{olive} $\blacklozenge$ So, E($X^2$) = $\sum_{x=0}^{3}$ $x^2$.${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$}
+\newline \newline {\color{violet} $\Rightarrow$ For x=0,    $\space$ $0^2$.${3}\choose{0}$.$(0.15)^0$.$(0.85)^{3-0}$}
+\newline {\color{violet} $\space$ $\space$ = 0.1.1.(0,6141) = 0}
+\newline \newline {\color{violet} $\Rightarrow$ For x=1,    $\space$ $1^2$.${3}\choose{1}$.$(0,15)^1$.$(0,85)^{3-1}$}
+\newline {\color{violet} $\space$ $\space$ = 1.3.(0,15).(0,7225) = (0,3251)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=2,    $\space$ $2^2$.${3}\choose{2}$.$(0,15)^2$.$(0,85)^{3-2}$}
+\newline {\color{violet} $\space$ $\space$ = 4.3.(0,0225).(0,85) = (0,2295)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=3,    $\space$ $3^2$.${3}\choose{3}$.$(0,15)^3$.$(0,85)^{3-3}$}
+\newline {\color{violet} $\space$ $\space$ = 9.1.(0,0034).1 = (0,0306)}
+\newline \newline {\color{teal} $\blacklozenge$  E(X) = $\sum_{x=0}^{3}$ $x^2$.${3}\choose{x}$.$(0,15)^x$.$(0,85)^{3-x}$ = 0 + (0,3251) + (0,2295) + (0,0306) = 0,5852}
+\newline \newline {\color{teal} $\blacklozenge$  Var(X) = E($X^2$) - $(E(X))^2$ = (0,5852) - $(0,4501)^2$ = 0,3826}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,3826}
+\newline
+\subproblem{d} What is the probability that the entire system is successful?\\
+\newline {\color{olive} $\blacklozenge$ The entire system will succeed only if all programs don't fail.}
+\newline {\color{olive} $\blacklozenge$ This case happens when X = 0.}
+\newline \newline {\color{violet} $\Rightarrow$ $f(x)$ =  ${3}\choose{x}$.$(0,15)^x$.$(1-0,15)^{3-x}$}
+\newline {\color{violet} $\Rightarrow$ For x=0, $\space$ $\space$ $f(x)$ = ${3}\choose{0}$.$(0,15)^0$.$(1-0,15)^{3-0}$}
+\newline {\color{violet} $\Rightarrow$ $\space$ $\space$ $f(x)$ = ${3}\choose{0}$.$(0,15)^0$.$(0,85)^{3}$}
+\newline {\color{violet} $\space$ $\space$ = 1.1.(0,6141) = 0,6141}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,6141}
+\newline
+\subproblem{e} What is the probability that the system fails?\\
+\newline {\color{olive} $\blacklozenge$ The system fails only when all 3 programs fail.}
+\newline {\color{olive} $\blacklozenge$ This case happens when X = 3.}
+\newline \newline {\color{violet} $\Rightarrow$ $f(x)$ =  ${3}\choose{x}$.$(0,15)^x$.$(1-0,15)^{3-x}$}
+\newline {\color{violet} $\Rightarrow$ For x=3, $\space$ $\space$ $f(x)$ = ${3}\choose{3}$.$(0,15)^3$.$(1-0,15)^{3-3}$}
+\newline {\color{violet} $\Rightarrow$ $\space$ $\space$ $f(x)$ = ${3}\choose{3}$.$(0,15)^3$.$(0,85)^{0}$}
+\newline {\color{violet} $\space$ $\space$ = 1.(0,0034).1 = 0,0034}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,0034}
+\newline
+\subproblem{f} If the desire is to have the system be successful with probability 0.99, are three programs sufficient? If not, how many are required?\\
+\newline {\color{olive} $\blacklozenge$ The probability of system failure was calculated to be 0,0034.}
+\newline {\color{olive} $\blacklozenge$ So, three programs are sufficient.}
+\newline \newline {\color{violet} $\Rightarrow$ 1 - 0,0034 = 0,9966}
+\newline {\color{violet} $\Rightarrow$ 0,9966 $>$ 0,99}
+\newline {\color{violet} $\Rightarrow$ In this case, the system is successful with a maximum probability of 0.9966. This is also greater than 0.99.}
+\newline \newline {\color{green} $\Rightarrow$ Result:  YES}
+\newpage
+\problem{4:}{10+10=20}
+According to World Health Organization (WHO), approximately 30\% of all treatment failures in Covid-19 are caused by lack of available respirators.\\
+\subproblem{a} What is the probability that out of the next 20 treatment failures at least 10 are due to lack of available respirators?\\
+\newline {\color{olive} $\blacklozenge$ There are only two possible results for each component.}
+\newline {\color{olive} $\blacklozenge$ It is either failure is caused by lack of available respirators or otherwise.}
+\newline {\color{olive} $\blacklozenge$ This means that we can solve this problem using the concept of binomial probability.}
+\newline \newline {\color{teal} $\blacklozenge$  The binomial probability is probability of x success in repeated n attempts and X can have only two outcomes.}
+\newline {\color{teal} $\blacklozenge$  P(X = x) = ${n}\choose{x}$.$p^x$.$(1-p)^{n-x}$}
+\newline {\color{teal} $\blacklozenge$ The probability that a treatment failure is caused by lack of available respirators is p = 0,3 .}
+\newline {\color{teal} $\blacklozenge$  There are 20 treatments, so n = 3.}
+\newline {\color{teal} $\blacklozenge$ So, P(X = x) =  ${20}\choose{x}$.$(0,3)^x$.$(0,7)^{20-x}$}
+\newline \newline {\color{violet} The probability that out of the next 20 treatments failures at least 10 are due to lack of available respirators is P(X $\geq$ 10).}
+\newline {\color{violet} $\Rightarrow$ P(X $\geq$ 10) = 1 - P(X $<$ 10) = 1 - P(X $\leq$ 9)}
+\newline {\color{violet} $\space$ $\space$ = 1 - $\sum_{x=0}^{9}$P(X = x)}
+\newline {\color{violet} $\space$ $\space$ = 1 - $\sum_{x=0}^{9}$b(x; 20, 0.3)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=0, $\space$ $\space$ b(0; 20, 0.3) = ${20}\choose{0}$.$(0,3)^0$.$(0,7)^{20}$ = 0,0008}
+\newline {\color{violet} $\Rightarrow$ For x=1, $\space$ $\space$ b(1; 20, 0.3) = ${20}\choose{1}$.$(0,3)^1$.$(0,7)^{19}$ = 0,0068}
+\newline {\color{violet} $\Rightarrow$ For x=2, $\space$ $\space$ b(2; 20, 0.3) = ${20}\choose{2}$.$(0,3)^2$.$(0,7)^{18}$ = 0,0278}
+\newline {\color{violet} $\Rightarrow$ For x=3, $\space$ $\space$ b(3; 20, 0.3) = ${20}\choose{3}$.$(0,3)^3$.$(0,7)^{17}$ = 0,0716}
+\newline {\color{violet} $\Rightarrow$ For x=4, $\space$ $\space$ b(4; 20, 0.3) = ${20}\choose{4}$.$(0,3)^4$.$(0,7)^{16}$ = 0,1304}
+\newline {\color{violet} $\Rightarrow$ For x=5, $\space$ $\space$ b(5; 20, 0.3) = ${20}\choose{5}$.$(0,3)^5$.$(0,7)^{15}$ = 0,1789}
+\newline {\color{violet} $\Rightarrow$ For x=6, $\space$ $\space$ b(6; 20, 0.3) = ${20}\choose{6}$.$(0,3)^6$.$(0,7)^{14}$ = 0,1916}
+\newline {\color{violet} $\Rightarrow$ For x=7, $\space$ $\space$ b(7; 20, 0.3) = ${20}\choose{7}$.$(0,3)^7$.$(0,7)^{13}$ = 0,1643}
+\newline {\color{violet} $\Rightarrow$ For x=8, $\space$ $\space$ b(8; 20, 0.3) = ${20}\choose{8}$.$(0,3)^8$.$(0,7)^{12}$ = 0,1144}
+\newline {\color{violet} $\Rightarrow$ For x=9, $\space$ $\space$ b(9; 20, 0.3) = ${20}\choose{9}$.$(0,3)^9$.$(0,7)^{11}$ = 0,0654}
+\newline {\color{olive} $\sum_{x=0}^{9}$b(i; 20, 0.3) = 0,0008 + 0,0068 + 0,0278 + 0,0716 + 0,1304 + 0,1789 + 0,1916 + 0,1643 + 0,1144 + 0,0654 = 0,9520}
+\newline \newline {\color{teal} P(X $\geq$ 10) = 1 - $\sum_{x=0}^{9}$b(i; 20, 0.3) = 1 - 0,9520 = 0,048}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,048}
+\newline
+\subproblem{b} What is the probability that no more than 4 out of 20 such failures are due to lack of available respirators?\\
+\newline {\color{violet} The  probability  that  out  of  the  next  20  treatments  failures  at  most 4  are  due  to  lack  of  available  respira-tors is P(X $\leq$ 4).}
+\newline {\color{violet} $\Rightarrow$ P(X $\leq$ 4) = $\sum_{x=0}^{4}$P(X = x)}
+\newline {\color{violet} $\space$ $\space$ = $\sum_{x=0}^{4}$b(x; 20, 0.3)}
+\newline \newline {\color{violet} $\Rightarrow$ For x=0, $\space$ $\space$ b(0; 20, 0.3) = ${20}\choose{0}$.$(0,3)^0$.$(0,7)^{20}$ = 0,0008}
+\newline {\color{violet} $\Rightarrow$ For x=1, $\space$ $\space$ b(1; 20, 0.3) = ${20}\choose{1}$.$(0,3)^1$.$(0,7)^{19}$ = 0,0068}
+\newline {\color{violet} $\Rightarrow$ For x=2, $\space$ $\space$ b(2; 20, 0.3) = ${20}\choose{2}$.$(0,3)^2$.$(0,7)^{18}$ = 0,0278}
+\newline {\color{violet} $\Rightarrow$ For x=3, $\space$ $\space$ b(3; 20, 0.3) = ${20}\choose{3}$.$(0,3)^3$.$(0,7)^{17}$ = 0,0716}
+\newline {\color{violet} $\Rightarrow$ For x=4, $\space$ $\space$ b(4; 20, 0.3) = ${20}\choose{4}$.$(0,3)^4$.$(0,7)^{16}$ = 0,1304}
+\newline {\color{olive} $\sum_{x=0}^{4}$b(i; 20, 0.3) = 0,0008 + 0,0068 + 0,0278 + 0,0716 + 0,1304 = 0,2374}
+\newline \newline {\color{teal} P(X $\leq$ 4) = $\sum_{x=0}^{4}$b(i; 20, 0.3) = 0,2374}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,2374}
+
+\bigskip
+\bigskip
+\bigskip
+
+\problem{5:}{7+7=14}
+A manufacturing company uses an acceptance scheme on items from a production line before they
+are shipped. The plan is a two-stage one. Boxes of 25 items are ready for shipment, and a sample of 3 items is tested for defectives. If any defectives are found, the entire box is sent back for 100\% screening. If no defectives are found, the box is shipped.\\
+\subproblem{a} What is the probability that a box containing 3 defectives will be shipped?\\
+\newline {\color{olive} $\blacklozenge$ Let random variable X represent the number of defective items among 3 tested items.}
+\newline {\color{olive} $\blacklozenge$ If there is no defective item, The box will be shipped.}
+\newline {\color{olive} $\blacklozenge$ This case happens when X = 0, P(X = 0).}
+\newline \newline {\color{teal} $\blacklozenge$ A random sample of size n = 3 is without replacement taken from N = 25 items.}
+\newline {\color{teal} $\blacklozenge$  Of the 25 items, k = 3 are classified as success and N - k = 25 - 3 as failure.}
+\newline {\color{teal} $\blacklozenge$ This means that we can solve this problem using the concept of hypergeometric probability distribution.}
+\newline \newline {\color{violet} The number of success is a hypergeometric random variable and follows the hypergeometric distribution $\space$ $\space$ $\space$ h(x; N, n, k) .}
+\newline {\color{violet} According to formula: h(x; N, n, k) = ${k}\choose{x}$.${N - k}\choose{n - x}$/${N}\choose{n}$}
+\newline \newline{\color{olive} P(X = 0) = h(0; 25, 3, 3)}
+\newline \newline{\color{violet} h(0; 25, 3, 3) = ${3}\choose{0}$.${25 - 3}\choose{3 - 0}$/${25}\choose{3}$}
+\newline{\color{violet} $\space$ $\space$ = ${3}\choose{0}$.${22}\choose{3}$/${25}\choose{3}$}
+\newline{\color{violet} $\space$ $\space$ = 1 . 1540 / 2300 = 0,6696}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,6696}
+\newline
+\subproblem{b} What is the probability that a box containing only 1 defective will be sent back for screening?\\
+\newline {\color{olive} $\blacklozenge$ Let random variable X represent the number of defective items among 3 tested items.}
+\newline {\color{olive} $\blacklozenge$ If there is at least 1 defective item, The box will be send back.}
+\newline {\color{olive} $\blacklozenge$ This case happens when X $\geq$ 1, P(X $\geq$ 1).}
+\newline {\color{blue} $\blacklozenge$ Probability of that a box containing only 1 defective will be sent back for screening is P(X = 1).}
+\newline \newline {\color{teal} $\blacklozenge$ A random sample of size n = 3 is without replacement taken from N = 25 items.}
+\newline {\color{teal} $\blacklozenge$  Of the 25 items, k = 1 are classified as success and N - k = 25 - 1 as failure.}
+\newline {\color{teal} $\blacklozenge$ This means that we can solve this problem using the concept of hypergeometric probability distribution.}
+\newline \newline {\color{violet} The number of success is a hypergeometric random variable and follows the hypergeometric distribution $\space$ $\space$ $\space$ h(x; N, n, k) .}
+\newline {\color{violet} According to formula: h(x; N, n, k) = ${k}\choose{x}$.${N - k}\choose{n - x}$/${N}\choose{n}$}
+\newline \newline{\color{olive} P(X = 1) = h(1; 25, 3, 1)}
+\newline \newline{\color{violet} h(1; 25, 3, 1) = ${1}\choose{1}$.${25 - 1}\choose{3 - 1}$/${25}\choose{3}$}
+\newline{\color{violet} $\space$ $\space$ = ${1}\choose{1}$.${24}\choose{2}$/${25}\choose{3}$}
+\newline{\color{violet} $\space$ $\space$ = 1 . 276 / 2300 = 0,12}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,12}
+
+\newpage
+
+\problem{6: Probability Distributions of Random Variables}{8+8=16}
+Suppose the probability that any given person will believe a tale about the transgressions of a famous actress is 0.8. What is the probability that\\
+\subproblem{a} the sixth person to hear this tale is the fourth one to believe it?\\
+\newline {\color{olive} $\blacklozenge$ There are only two possible results for each component.}
+\newline {\color{olive} $\blacklozenge$ It is either believing or not.}
+\newline {\color{olive} $\blacklozenge$ This means that we can solve this problem using the concept of binomial probability distribution.}
+\newline \newline {\color{teal} $\blacklozenge$ The probability that the person to hear this tale and believe it is p = 0,8 .}
+\newline {\color{teal} $\blacklozenge$ Let the random X variable represent the fourth person who believes in the tale.}
+\newline {\color{teal} $\blacklozenge$ So, it is negative binomial distribution with k = 4 .}
+\newline {\color{teal} $\blacklozenge$  P(X = x) = b(x; k, p) = ${x-1}\choose{k-1}$.$p^k$.$(1-p)^{x-k}$}
+\newline \newline {\color{blue} $\blacklozenge$ Probability of that the sixth person to hear this tale is the fourth one to believe is P(X = 6).}
+\newline \newline {\color{violet} $\Rightarrow$ P(X = 6) = b(6; 4, 0,8)}
+\newline {\color{violet} $\space$ $\space$ =  ${6-1}\choose{4-1}$.$(0,8)^4$.$(1-0,8)^{6-4}$}
+\newline {\color{violet} $\space$ $\space$ =  ${5}\choose{3}$.$(0,8)^4$.$(0,2)^{2}$}
+\newline {\color{violet} $\space$ $\space$ = 10 . (0,4096) . 0,04 = 0,1638}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,1638}
+\newline
+\subproblem{b} the third person to hear this tale is the first one to believe it?\\
+\newline {\color{olive} $\blacklozenge$ There are only two possible results for each component.}
+\newline {\color{olive} $\blacklozenge$ It is either believing or not.}
+\newline {\color{olive} $\blacklozenge$ This means that we can solve this problem using the concept of binomial probability distribution.}
+\newline \newline {\color{teal} $\blacklozenge$ The probability that the person to hear this tale and believe it is p = 0,8 .}
+\newline {\color{teal} $\blacklozenge$ Let the random X variable represent the fourth person who believes in the tale.}
+\newline {\color{teal} $\blacklozenge$ So, it is negative binomial distribution with k = 1 .}
+\newline {\color{teal} $\blacklozenge$  P(X = x) = b(x; k, p) = ${x-1}\choose{k-1}$.$p^k$.$(1-p)^{x-k}$}
+\newline \newline {\color{blue} $\blacklozenge$ Probability of that the sixth person to hear this tale is the fourth one to believe is P(X = 3).}
+\newline \newline {\color{violet} $\Rightarrow$ P(X = 3) = b(3; 1, 0,8)}
+\newline {\color{violet} $\space$ $\space$ =  ${3-1}\choose{1-1}$.$(0,8)^1$.$(1-0,8)^{3-1}$}
+\newline {\color{violet} $\space$ $\space$ =  ${2}\choose{0}$.$(0,8)^1$.$(0,2)^{2}$}
+\newline {\color{violet} $\space$ $\space$ = 1 . (0,8) . 0,04 = 0,032}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0,032}
+\end{document} 
+
+

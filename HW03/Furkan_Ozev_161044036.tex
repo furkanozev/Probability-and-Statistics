@@ -1,0 +1,218 @@
+\documentclass[a4 paper]{article}
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[ruled]{algorithm2e}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\homework}[6]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf MATH 118:~Statistics and Probability \hfill {\small (#2)}} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: {\rm #3} \hfill Name: {\color{teal}{Furkan \"OZEV\rm #5}} \hfill Student Id: {\color{teal}{161044036 \rm #6}}} \hfill}
+       \hbox to 6.28in { {\it Assistant: #4  \hfill #6}}
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#5 -- #1}{#5 -- #1}
+   \vspace*{4mm}
+}
+
+\newcommand{\problem}[2]{~\\\fbox{\textbf{Problem #1}}\hfill (#2 points)\newline\newline}
+\newcommand{\subproblem}[1]{~\newline\textbf{(#1)}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\VS}{\textrm{VS}}
+\newcommand{\solution}{~\newline\textbf{\textit{(Solution)}} }
+
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\0}{\mathbf{0}}
+
+
+\begin{document}
+\homework{Homework \#3}{Due: 02/06/20}{Dr. Zafeirakis Zafeirakopoulos}{Gizem S\"ung\"u}{}{}
+\textbf{Course Policy}: Read all the instructions below carefully before you start working on the assignment, and before you make a submission.
+\begin{itemize}
+\item It is not a group homework. Do not share your answers to anyone in any circumstance. Any cheating means at least -100 for both sides. 
+\item Do not take any information from Internet.
+\item No late homework will be accepted. 
+\item For any questions about the homework, send an email to gizemsungu@gtu.edu.tr.
+\item Submit your homework (both your latex and pdf files in a zip file) into the course page of Moodle.
+\item Save your latex, pdf and zip files as "Name\_Surname\_StudentId".\{tex, pdf, zip\}.
+\item The answer which has only calculations without any formula and any explanation will get zero. 
+\item The deadline of the homework is 02/06/20 23:55.
+\end{itemize}
+
+\problem{1:}{15+20=35}
+Kuru Kahveci Mehmet Efendi (the producer), which is a coffee brand, supplies coffee beans to a coffee shop (the consumer) in Kadikoy. The coffee is supplied as 50 packages at each order and each package has 1 kg coffee beans. The consumer regards an order as acceptable provided that there are not more than 5 packages which have stale coffee beans. Rather than test all packages in the order, 10 packages are selected at random and tested.
+
+\subproblem{a} Find the probability that out of a sample of 10, d = 0, 1, 2, 3, 4, 5 are stale when there are actually 5 stale packages in the order.
+\newline \newline {\color{olive} $\blacklozenge$ Let random variable X represent the number of stale packages.}
+\newline {\color{olive} $\blacklozenge$ If there are not more than 5 stale packages, The consumer will accept order.}
+\newline {\color{olive} $\blacklozenge$ This case happens when X = d, P(X = d), d = 0, 1, 2, 3, 4, 5.}
+\newline \newline {\color{teal} $\blacklozenge$ A random sample of size n = 10 is without replacement taken from N = 50 packages.}
+\newline {\color{teal} $\blacklozenge$  Of the 50 packages, k = 5 are classified as acceptable and N - k = 50 - 5 as unacceptable.}
+\newline {\color{teal} $\blacklozenge$ This means that we can solve this problem using the concept of hypergeometric probability distribution.}
+\newline \newline {\color{violet} The number of success is a hypergeometric random variable and follows the hypergeometric distribution $\space$ $\space$ $\space$ h(d; N, n, k) .}
+\newline {\color{violet} According to formula: P(X = d) = h(d; N, n, k) = ${k}\choose{d}$.${N - k}\choose{n - d}$/${N}\choose{n}$}
+\newline \newline{\color{teal} So,}
+\newline{\color{olive} P(X = 0) = h(0; 50, 10, 5)}
+\newline {\color{violet} h(0; 50, 10, 5) = ${5}\choose{0}$.${50 - 5}\choose{10 - 0}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{0}$.${45}\choose{10}$/${50}\choose{10}$ $\approx$ 0.311}
+\newline \newline{\color{olive} P(X = 1) = h(1; 50, 10, 5)}
+\newline {\color{violet} h(1; 50, 10, 5) = ${5}\choose{1}$.${50 - 5}\choose{10 - 1}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{1}$.${45}\choose{9}$/${50}\choose{10}$ $\approx$ 0.431}
+\newline \newline{\color{olive} P(X = 2) = h(2; 50, 10, 5)}
+\newline {\color{violet} h(2; 50, 10, 5) = ${5}\choose{2}$.${50 - 5}\choose{10 - 2}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{2}$.${45}\choose{8}$/${50}\choose{10}$ $\approx$ 0.210}
+\newline \newline{\color{olive} P(X = 3) = h(0; 50, 10, 5)}
+\newline {\color{violet} h(3; 50, 10, 5) = ${5}\choose{3}$.${50 - 5}\choose{10 - 3}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{3}$.${45}\choose{7}$/${50}\choose{10}$ $\approx$ 0.044}
+\newline \newline{\color{olive} P(X = 4) = h(4; 50, 10, 5)}
+\newline {\color{violet} h(4; 50, 10, 5) = ${5}\choose{4}$.${50 - 5}\choose{10 - 4}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{4}$.${45}\choose{6}$/${50}\choose{10}$ $\approx$ 0.004}
+\newline \newline{\color{olive} P(X = 5) = h(5; 50, 10, 5)}
+\newline {\color{violet} h(5; 50, 10, 5) = ${5}\choose{5}$.${50 - 5}\choose{10 - 5}$/${50}\choose{10}$}
+\newline {\color{violet} $\space$ $\space$ = ${5}\choose{5}$.${45}\choose{5}$/${50}\choose{10}$ $\approx$ 0.001}
+\newline
+\newline
+
+
+\subproblem{b} Suppose that the consumer will accept the order provided that not more than m stale packages are found in the sample of 10.
+\begin{itemize}
+	\item Find the probability that the order is accepted when there are 5 stale packages in the order.\\
+	\newline {\color{olive} $\blacklozenge$ The customer will accept order with at most 5 stale packages. So, m $\leq$ 5}
+	\newline {\color{violet} According to formula: $\sum_{d=0}^{m}$ P(X = d) = $\sum_{d=0}^{m}$  h(d; N, n, k)}
+	\newline \newline {\color{violet} = $\sum_{d=0}^{m}$ ${k}\choose{d}$.${N - k}\choose{n - d}$/${N}\choose{n}$}
+	\newline \newline {\color{teal} So, $\sum_{d=0}^{m}$ ${5}\choose{d}$.${50 - 5}\choose{10 - d}$/${50}\choose{10}$}
+	\newline \newline {\color{teal} = $\sum_{d=0}^{m}$ ${5}\choose{d}$.${45}\choose{10 - d}$/${50}\choose{10}$ , for m $\leq$ 5}
+	\newline
+	\item Find the probability that the order is rejected when there are 3 stale packages in the order.\\
+	\newline {\color{olive} $\blacklozenge$ The customer will reject order when there are 3 stale packages in order. So, m $\leq$ 3}
+	\newline {\color{violet} According to formula: 1 - $\sum_{d=0}^{m}$ P(X = d) = 1 - $\sum_{d=0}^{m}$  h(d; N, n, k)}
+	\newline \newline {\color{violet} = 1 - $\sum_{d=0}^{m}$ ${k}\choose{d}$.${N - k}\choose{n - d}$/${N}\choose{n}$}
+	\newline \newline {\color{teal} So, 1 - $\sum_{d=0}^{m}$ ${3}\choose{d}$.${47 - 3}\choose{10 - d}$/${50}\choose{10}$}
+	\newline \newline {\color{teal} = 1 - $\sum_{d=0}^{m}$ ${3}\choose{d}$.${47}\choose{10 - d}$/${50}\choose{10}$ , for m $\leq$ 3}
+	\newline
+\end{itemize}
+\newpage
+\problem{2:}{20+5=25}
+Hairdresser and barber shops reopened in Turkey under strict hygiene rules after almost two months at the 11th of May. Regarding to "new normal" rules, the number of customers arriving per hour at a hairdresser should be under control by the owner of the hairdresser shop. The hairdresser can accept at most 4 customers per hour with its conditions.
+Before arranging appointments with the customers, the owner wants to estimate whether there can be more demands than the owner can accept. The number of customers arriving per hour is assumed to follow
+a Poisson distribution with mean $\lambda$ = 6.
+
+\subproblem{a} Compute the probability that more than 12 customers will arrive in a 3-hour period.\\
+\newline {\color{olive} $\blacklozenge$ The probability distribution of the Poisson random variable X, representing the number of outcomes occurring in a given time interval or specified region denoted by t, is}
+\newline \newline {\color{teal} p(x; $\lambda.t$) = $\frac{e^{-\lambda.t}.(\lambda.t)^x}{x!}$, x = 0, 1, 2,...}
+\newline \newline {\color{olive} where $\lambda$ is the average number of outcomes per unit (of time, distance, area, etc).}
+\newline \newline{\color{violet} $\blacklozenge$ Poisson distribution with mean $\lambda$ = 6, So arrival rate of customers is 6 per hour.}
+\newline \newline{\color{violet} $\blacklozenge$ Let random variable X represent the number of arrivals of customers in 3-hour period, so $t$ = 3}
+\newline \newline {\color{teal} p(x; 6.3) = $\frac{e^{-6.3}.(6.3)^x}{x!}$, x = 0, 1, 2,...}
+\newline \newline {\color{teal} p(x; 18) = $\frac{e^{-18}.(18)^x}{x!}$, x = 0, 1, 2,...}
+\newline \newline {\color{violet} $\blacklozenge$ The probability that more than 12 customers will arrive in 3-hour period: P(X $>$ 12)}
+\newline \newline {\color{teal} P(X $>$ 12) = 1 - P(X $\leq$ 12)}
+\newline \newline {\color{olive} P(X $\leq$ 12) = $\sum_{x=0}^{12}$ p(x; 18) = 0.09167}
+\newline \newline {\color{teal} P(X $>$ 12) = 1 - 0.09167 = 0.90833}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.90833}
+\newline
+
+\subproblem{b} What is the mean number of arrivals during a
+3-hour period?\\
+\newline {\color{olive} $\blacklozenge$ The mean number of arrivals during a 3-hour period is: }
+\newline \newline {\color{violet} $\blacklozenge$ X has a Poisson distribution with the parameter $\mu$ = 6 x 3 = 18. The average of the random variable with the $\mu$ parameter and Poisson distribution is E(X) = $\mu$. So, the average number of arrivals within 3-hour period is E(X) = 18.}
+\newline \newline {\color{green} $\Rightarrow$ Result: 18}
+\newline
+
+\problem{3:}{8+8+8+8+8=40}
+Given a normal distribution with $\mu$ = 35 and $\sigma$ = 7, find\\
+\subproblem{a} the normal curve area to the right of x = 21.\\
+\newline {\color{olive} $\blacklozenge$ Formula: $z$ = $\frac{x - \mu}{\sigma}$}
+\newline \newline {\color{teal} $z$ = $\frac{21 - 35}{7}$ = $\frac{-14}{7}$ = -2}
+\newline \newline {\color{violet} Right curve area, So,}
+\newline \newline {\color{violet} P(X $>$ 21) = P(Z $>$ -2) = 1 - P(Z $\leq$ -2)}
+\newline \newline {\color{violet} According to Z Table: P(Z $\leq$ -2) = 0.0228}
+\newline \newline {\color{violet} So, P(X $>$ 21) = 1 - 0.0228 = 0.9772}
+\newline \newline {\color{green} $\Rightarrow$ Result:  0.9772}
+\newline
+\subproblem{b}  the normal curve area to the left of x = 25.\\
+\newline {\color{olive} $\blacklozenge$ Formula: $z$ = $\frac{x - \mu}{\sigma}$}
+\newline \newline {\color{teal} $z$ = $\frac{25 - 35}{7}$ = $\frac{-10}{7}$ = -1.428 $\approx$ -1.43}
+\newline \newline {\color{violet} Left curve area, So,}
+\newline \newline {\color{violet} P(X $<$ 25) = P(Z $<$ -1.43)}
+\newline \newline {\color{violet} According to Z Table: P(Z $<$ -1.43) = 0.0764}
+\newline \newline {\color{violet} So, P(X $<$ 25) = 0.0764}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.0764}
+\newline
+\subproblem{c}  the normal curve area between x = 32 and x = 41.\\
+\newline {\color{olive} $\blacklozenge$ Formula: $z$ = $\frac{x - \mu}{\sigma}$}
+\newline \newline {\color{teal} $z_1$ = $\frac{32 - 35}{7}$ = $\frac{-3}{7}$ = -0.428  $\approx$ -0.43}
+\newline \newline {\color{teal} $z_2$ = $\frac{41 - 35}{7}$ = $\frac{-3}{7}$ = 0.857  $\approx$ 0.86}
+\newline \newline {\color{violet} P(X $>$ 32) and P(X $<$ 41), So,}
+\newline \newline {\color{violet} P(32 $<$ X $<$ 41) = P(X $<$ 41) - P(X $<$ 32)}
+\newline \newline {\color{teal} P(X $<$ 41) = P($Z_2$ $<$ 0.86)}
+\newline \newline {\color{violet} According to Z Table: P($Z_2$ $<$ 0.86) = 0.8051}
+\newline \newline {\color{teal} P(X $<$ 32) = P($Z_1$ $<$ -0.43)}
+\newline \newline {\color{violet} According to Z Table: P($Z_1$ $<$ -0.43) = 0.3336}
+\newline \newline {\color{violet} P(32 $<$ X $<$ 41) = 0.8051 - 0.3336 = 0.4715}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.4715}
+\newline
+\subproblem{d} the value of x that has 60\% of the normal curve
+area to the left.\\
+\newline {\color{olive} $\blacklozenge$ Formula: $z$ = $\frac{x - \mu}{\sigma}$}
+\newline \newline {\color{olive} = $z$ . $\sigma$ = x - $\mu$}
+\newline \newline {\color{olive} = ($z$ . $\sigma$) + $\mu$ = x}
+\newline \newline {\color{violet} $\sigma$ = 7, $\mu$ = 35}
+\newline \newline {\color{violet} According to Normal Curve Area Table, value of $z$ = 0.253}
+\newline \newline {\color{teal} x = (0.253 . 7) + 35}
+\newline \newline {\color{teal} x = 36.771 $\approx$ 36.77}
+\newline \newline {\color{green} $\Rightarrow$ Result: 36.77}
+\newline
+\subproblem{e} the two values of x that contain the middle 75\% of
+the normal curve area.\\
+\newline {\color{olive} $\blacklozenge$ Formula: $z$ = $\frac{x - \mu}{\sigma}$}
+\newline \newline {\color{teal} $x_1$ = ($z_1$ . $\sigma$) + $\mu$}
+\newline \newline {\color{teal} $x_2$ = ($z_2$ . $\sigma$) + $\mu$}
+\newline \newline {\color{violet} $\Rightarrow$ P($z$ $\geq$ Z $\geq$ -$z$) = 0.75}
+\newline \newline {\color{violet} $\Rightarrow$ P($z$ $\geq$ Z) - P(-$z$ $\geq$ Z) = P($z$ $\geq$ Z) - (1 - P($z$ $\geq$ Z)) = 0.75}
+\newline \newline {\color{violet} $\Rightarrow$ 2P($z$ $\geq$ Z) - 1 = 0.75}
+\newline \newline {\color{violet} $\Rightarrow$ 2P($z$ $\geq$ Z) = 1.75}
+\newline \newline {\color{violet} $\Rightarrow$ P($z$ $\geq$ Z) = 0.875}
+\newline \newline {\color{violet} So, For normal curve area, the value of $z$ leaving an area of 0.875 to the left $z_1$ = 1.15 and the right is $z_2$ = -1.15}
+\newline \newline {\color{teal} Left, $x_1$ = (1.15 . 7) + 35 = 43.05}
+\newline \newline {\color{teal} Right, $x_2$ = (-1.15 . 7) + 35 = 26.95}
+\newline \newline {\color{green} $\Rightarrow$ Result: 26.95 and 43.05}
+\end{document} 
+
+

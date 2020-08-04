@@ -1,0 +1,325 @@
+\documentclass[a4 paper]{article}
+\usepackage[inner=2.0cm,outer=2.0cm,top=2.5cm,bottom=2.5cm]{geometry}
+\usepackage{setspace}
+\usepackage[ruled]{algorithm2e}
+\usepackage[rgb]{xcolor}
+\usepackage{verbatim}
+\usepackage{subcaption}
+\usepackage{amsgen,amsmath,amstext,amsbsy,amsopn,tikz,amssymb,tkz-linknodes}
+\usepackage{fancyhdr}
+\usepackage[colorlinks=true, urlcolor=blue,  linkcolor=blue, citecolor=blue]{hyperref}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage{rotating}
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{rem}[thm]{Remark}
+\numberwithin{equation}{section}
+
+\newcommand{\homework}[6]{
+   \pagestyle{myheadings}
+   \thispagestyle{plain}
+   \newpage
+   \setcounter{page}{1}
+   \noindent
+   \begin{center}
+   \framebox{
+      \vbox{\vspace{2mm}
+    \hbox to 6.28in { {\bf MATH 118:~Statistics and Probability \hfill {\small (#2)}} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\Large \hfill #1  \hfill} }
+       \vspace{6mm}
+       \hbox to 6.28in { {\it Instructor: {\rm #3} \hfill Name: {\color{teal}{Furkan \"OZEV\rm #5}} \hfill Student Id: {\color{teal}{161044036 \rm #6}}} \hfill}
+       \hbox to 6.28in { {\it Assistant: #4  \hfill #6}}
+      \vspace{2mm}}
+   }
+   \end{center}
+   \markboth{#5 -- #1}{#5 -- #1}
+   \vspace*{4mm}
+}
+
+\newcommand{\problem}[2]{~\\\fbox{\textbf{Problem #1}}\hfill (#2 points)\newline\newline}
+\newcommand{\subproblem}[1]{~\newline\textbf{(#1)}}
+\newcommand{\D}{\mathcal{D}}
+\newcommand{\Hy}{\mathcal{H}}
+\newcommand{\VS}{\textrm{VS}}
+\newcommand{\solution}{~\newline\textbf{\textit{(Solution)}} }
+
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbX}{\mathbb{X}}
+\newcommand{\bI}{\mathbf{I}}
+\newcommand{\bX}{\mathbf{X}}
+\newcommand{\bY}{\mathbf{Y}}
+\newcommand{\bepsilon}{\boldsymbol{\epsilon}}
+\newcommand{\balpha}{\boldsymbol{\alpha}}
+\newcommand{\bbeta}{\boldsymbol{\beta}}
+\newcommand{\0}{\mathbf{0}}
+
+
+\begin{document}
+\homework{Homework \#1}{Due: 15/03/20}{Dr. Zafeirakis Zafeirakopoulos}{Gizem S\"ung\"u}{}{}
+\textbf{Course Policy}: Read all the instructions below carefully before you start working on the assignment, and before you make a submission.
+\begin{itemize}
+\item It is not a group homework. Do not share your answers to anyone in any circumstance. Any cheating means at least -100 for both sides. 
+\item Do not take any information from Internet.
+\item No late homework will be accepted. 
+\item For any questions about the homework, come to my office hour.
+\item After the office hour, no questions about the homework by email will be responded.
+\item Submit your homework (both your latex and pdf files in a zip file) into the course page of Moodle.
+\item Save your latex, pdf and zip files as "Name\_Surname\_StudentId".\{tex, pdf, zip\}.
+\item The deadline of the homework is 15/03/20 23:55.
+\end{itemize}
+
+\problem{1: Counting Sample Points}{5+5+5=15}
+\subproblem{a} How many three-digit numbers can be formed from the digits 0, 1, 2, 3, 4, 5, and 6 if each digit can be used only once?\newline
+\newline {\color{olive} $\blacklozenge$ Hundreds position can't be 0.} \newline 
+\newline {\color{violet} Possible digits for hundreds position: \{1,2,3,4,5,6\}}
+\newline {\color{violet} Possible digits for tens position: \{0,1,2,3,4,5,6\}}
+\newline {\color{violet} Possible digits for ones position: \{0,1,2,3,4,5,6\}}
+\newline \newline {\color{olive} $\blacklozenge$ First determine hundreds position. Then, tens position. Then ones position.}
+\newline \newline  {\color{blue} $\Rightarrow$ We should take 3 digits to form three-digits numbers.}
+\newline {\color{orange} $\Rightarrow$ There are 6 way to determine hundreds position.}
+\newline {\color{blue} $\Rightarrow$ After determine the hundreds position, there will remain 6 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 6 way to determine tens position.}
+\newline {\color{blue} $\Rightarrow$ After determine the tens position, there will remain 5 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 5 way to determine ones position.}
+\newline \newline {\color{olive} $\Rightarrow$ So, there are $6x6x5 = 180$ possible ways to form three-digits numbers with given numbers.}
+\newline \newline {\color{green} $\Rightarrow$ Result: 180}
+\newline
+\subproblem{b} How many of these are odd numbers?\newline
+\newline {\color{olive} $\blacklozenge$ Hundreds position can't be 0.}
+\newline {\color{olive} $\blacklozenge$ Ones position must be odd number.} \newline 
+\newline {\color{violet} Possible digits for hundreds position: \{1,2,3,4,5,6\}}
+\newline {\color{violet} Possible digits for tens position: \{0,1,2,3,4,5,6\}}
+\newline {\color{violet} Possible digits for ones position: \{1,3,5\}}
+\newline \newline {\color{olive} $\blacklozenge$ First determine ones position. Then, hundreds position. Then tens position.}
+\newline \newline  {\color{blue} $\Rightarrow$ We should take 3 digits to form three-digits numbers.}
+\newline {\color{orange} $\Rightarrow$ There are 3 way to determine ones position.}
+\newline {\color{blue} $\Rightarrow$ After determine the ones position, there will remain 6 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 5 (non-zero) way to determine hundreds position.}
+\newline {\color{blue} $\Rightarrow$ After determine the hundreds position, there will remain 5 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 5 way to determine tens position.}
+\newline \newline {\color{violet} $\Rightarrow$ So, there are $3x5x5 = 75$ possible ways to form three-digits numbers with given numbers.}
+\newline \newline {\color{green} $\Rightarrow$ Result: 75}
+\newline
+\subproblem{c} How many are greater than 330?\newline
+\newline {\color{olive} $\blacklozenge$ Hundreds position can't be 0.}
+\newline {\color{olive} $\blacklozenge$ Hundreds position can be bigger and equal than 3.} \newline
+\newline {\color{teal} $\blacktriangleright$ If hundreds position equal 3:} \newline
+\newline {\color{olive} $\blacklozenge$ Tens position must be bigger than 3.} \newline
+\newline {\color{violet} Possible digits for tens position: \{4,5,6\}}
+\newline {\color{violet} Possible digits for ones position: \{0,1,2,4,5,6\}}
+\newline \newline {\color{olive} $\blacklozenge$ First determine tens position. Then, ones position.}
+\newline \newline  {\color{blue} $\Rightarrow$ We should take 2 more digits to form three-digits numbers with hundreds position is 3.}
+\newline {\color{orange} $\Rightarrow$ There are 3 way to determine tens position.}
+\newline {\color{blue} $\Rightarrow$ After determine the tens position, there will remain 5 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 5 way to determine ones position.}
+\newline \newline {\color{violet} $\Rightarrow$ So, there are $3x5 = 15$ possible ways to form three-digits numbers with hundreds position is 3.}
+\newline
+\newline {\color{teal} $\blacktriangleright$ If hundreds position bigger than 3:} \newline
+\newline {\color{violet} Possible digits for hundreds position: \{4,5,6\}}
+\newline {\color{violet} Possible digits for tens position: \{0,1,2,3,4,5,6\}}
+\newline {\color{violet} Possible digits for ones position: \{0,1,2,3,4,5,6\}}
+\newline \newline {\color{olive} $\blacklozenge$ First determine hundreds position. Then, tens position. Then, ones position.}
+\newline \newline  {\color{blue} $\Rightarrow$ We should take 3 digits to form three-digits numbers with hundreds position bigger than 3.}
+\newline {\color{orange} $\Rightarrow$ There are 3 way to determine hundreds position.}
+\newline {\color{blue} $\Rightarrow$ After determine the hundreds position, there will remain 6 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 6 way to determine tens position.}
+\newline {\color{blue} $\Rightarrow$ After determine the tens position, there will remain 5 digits.}
+\newline {\color{orange} $\Rightarrow$ So, There are 5 way to determine ones position.}
+\newline \newline {\color{violet} $\Rightarrow$ So, there are $3x6x5 = 90$ possible ways to form three-digits numbers with hundreds position bigger than 3.}
+\newline \newline {\color{teal} $\Rightarrow$ Amount of possible numbers greater than 330: 90 $+$ 15 $=$ 105}
+\newline {\color{green} $\Rightarrow$ Result: 105}
+\newline
+
+
+
+\problem{2: Conditional Probability, Independence, and the Product Rule}{10+10=20}
+The probability that a randomly chosen coffee machine will need a coffee bean change is 0.25; the probability that it needs a new filter is 0.40; and the probability that both the bean and filter need changing is 0.14.\newline
+\subproblem{a} If the bean has to be changed, what is the probability that a new filter is needed?\newline
+\newline {\color{olive} $\blacklozenge$ Let A be the event that need a coffee bean change.}
+\newline {\color{olive} $\blacklozenge$ Let B be the event that a need new filter.} \newline 
+\newline {\color{violet} $\Rightarrow$ The probability of an event B occuring when it is  known that some event A occured is called conditional probability. }
+\newline {\color{violet} $\Rightarrow$ Notation: P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ }
+\newline \newline  {\color{blue} $\Rightarrow$ $P(B \cap A)$ : Probability of changing both bean and filter, and it is 0.14}
+\newline \newline  {\color{orange} $\Rightarrow$ P(A) : Probability of changing bean, and it is 0.25}
+\newline \newline {\color{olive} $\Rightarrow$ So, P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ $=$ $\frac{0.14}{0.25}$ $=$ 0.56}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.56}
+\newline
+\subproblem{b} If a new filter is needed, what is the probability that the bean has to be changed?\newline
+\newline {\color{olive} $\blacklozenge$ Let A be the event that a need new filter.}
+\newline {\color{olive} $\blacklozenge$ Let B be the event that need a coffee bean change.} \newline
+\newline {\color{violet} $\Rightarrow$ The probability of an event B occuring when it is  known that some event A occured is called conditional probability.}
+\newline {\color{violet} $\Rightarrow$ Notation: P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ }
+\newline \newline  {\color{blue} $\Rightarrow$ $P(B \cap A)$ : Probability of changing both bean and filter, and it is 0.14}
+\newline \newline  {\color{orange} $\Rightarrow$ P(A) : Probability of need new filter, and it is 0.40}
+\newline \newline {\color{olive} $\Rightarrow$ So, P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ $=$ $\frac{0.14}{0.40}$ $=$ 0.35}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.35}
+\newline
+\newpage
+\problem{3: Conditional Probability, Independence, and the Product Rule}{5+5+5+5 = 20}
+Before the distribution of certain task, every fourth machine is tested for accuracy. The testing process consists of running four independent tasks and checking the results. The failure rates for the four testing tasks are, respectively, 0.01, 0.03, 0.02, and 0.01.\newline
+
+\subproblem{a}What is the probability that a machine was tested and
+failed any test?\newline
+\newline {\color{olive} $\blacklozenge$ Let X be the machine to be tested.}
+\newline {\color{olive} $\blacklozenge$ Every fourth machine is tested.}
+\newline {\color{violet} $\Rightarrow$ Therefore, possibility of testing X machine is: {\color{blue} P(X) = $\frac{1}{4}$}}
+\newline \newline {\color{olive} $\blacklozenge$ Let $S_i$ be Success of $i^{th}$ task.}
+\newline {\color{violet} $\Rightarrow$ P($S_1$) $=$ 1 - 0.01 $=$ 0.99}
+\newline {\color{violet} $\Rightarrow$ P($S_2$) $=$ 1 - 0.03 $=$ 0.97}
+\newline {\color{violet} $\Rightarrow$ P($S_3$) $=$ 1 - 0.02 $=$ 0.98}
+\newline {\color{violet} $\Rightarrow$ P($S_4$) $=$ 1 - 0.01 $=$ 0.99}
+\newline \newline {\color{olive} $\blacklozenge$ The probability of the machine successfully passing all 4 tasks that are independent:}
+\newline {\color{violet} $\Rightarrow$ P(Success Tasks) $=$ P($S_1$) $x$ P($S_2$) $x$ P($S_3$) $x$ P($S_4$) $=$ 0.99 $x$ 0.97 $x$ 0.98 $x$ 0.99 $=$ 0.93168306}
+\newline \newline {\color{olive} $\blacklozenge$ The probability of the machine does not successfully passing all 4 tasks that are independent:}
+\newline {\color{violet} $\Rightarrow$ P(F) $=$ P(Fail Tasks) $=$ 1 - 0.93168306 $=$ 0.06831694}
+\newline \newline {\color{olive} $\blacklozenge$ To be fourth machine and Fail tasks are independent events:}
+\newline {\color{violet} $\Rightarrow$ P(X $\cap$ F) $=$ P(X) $x$ P(F) $=$ 0.25 $x$ 0.06831694 $=$ 0.017079235}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.01707}
+\newline
+\subproblem{b} Given that a machine was tested, what is the probability
+that it failed task 2 or 3?\newline
+\newline {\color{olive} $\blacklozenge$ The probability of the machine does not passing that task 2 or 3. (All tasks are independent):}
+\newline \newline {\color{teal} $\blacklozenge$ Firstly, Assume that Machine does not pass the test because of Task 2 is failed:}
+\newline {\color{violet} $\Rightarrow$ P(Machine fails because of Task 2) $=$ P(Task 1 Success) $x$ P(Task 3 Success) $x$ P(Task 4 Success) $x$ P(Task 2 Fail) $=$ P($S_1$) $x$ P($S_3$) $x$ P($S_4$) $x$ F($S_3$) $=$ 0.99 $x$ 0.98 $x$ 0.99 $x$ 0.03 $=$ 0.02881494}
+\newline \newline {\color{teal} $\blacklozenge$ Secondly, Assume that Machine does not pass the test because of Task 3 is failed:}
+\newline {\color{violet} $\Rightarrow$ P(Machine fails because of Task 3) $=$ P(Task 1 Success) $x$ P(Task 2 Success) $x$ P(Task 4 Success) $x$ P(Task 3 Fail) $=$ P($S_1$) $x$ P($S_3$) $x$ P($S_4$) $x$ F($S_3$) $=$ 0.99 $x$ 0.97 $x$ 0.99 $x$ 0.02 $=$ 0.01901394}
+\newline \newline {\color{teal} $\blacklozenge$ Finally, Assume that Machine does not pass the test because of Task 2 or 3 is failed:}
+\newline {\color{violet} $\Rightarrow$ P(Machine fails because of Task 2 or 3) $=$ P(Machine fails because of Task 2) $+$ P(Machine fails because of Task 3) $=$ 0.04782888}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.04782}
+\newline
+\subproblem{c} In a sample of 100, how many machines would you expect to be rejected?\newline
+\newline {\color{olive} $\blacklozenge$ In case A, we found the possibility that a machine could not pass a test due to any task.}
+\newline {\color{violet} $\Rightarrow$ P(F) $=$ P(Fail Tasks) $=$ 0.06831694}
+\newline {\color{violet} $\Rightarrow$ Number of Machine $x$ P(F) $=$ 100 $x$ 0.06831694 $=$ 6,83 Machine rejected.}
+\newline \newline {\color{green} $\Rightarrow$ Result $\approx$ 7}
+\newline
+\subproblem{d} Given that a machine was defective, what is the probability that it was tested?\newline
+\newline {\color{olive} $\blacklozenge$ Let A be the event that machine was defected.}
+\newline {\color{olive} $\blacklozenge$ Let B be the event that machine is tested.} \newline 
+\newline {\color{violet} $\Rightarrow$ The probability of an event B occuring when it is  known that some event A occured is called conditional probability. }
+\newline {\color{violet} $\Rightarrow$ Notation: P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ }
+\newline \newline  {\color{blue} $\Rightarrow$ $P(B \cap A)$ : Probability of machine is defective and it is tested.}
+\newline \newline  {\color{orange} $\Rightarrow$ P(A) : Probability of machine was defective.}
+\newline \newline {\color{olive} $\Rightarrow$ So, P(B$|$A) $=$ $\frac{P(B \cap A)}{P(A)}$ $=$ $\frac{P(B) x P(A)}{P(A)}$ $=$ P(B)}
+\newline \newline {\color{olive} $\blacklozenge$ Every fourth machine is tested.}
+\newline {\color{violet} $\Rightarrow$ Therefore, possibility of testing machine is: {\color{blue} P(B) = $\frac{1}{4}$}}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.25}
+\newline
+\newline
+\problem{4: Random Variables }{1+1+1+1+1=5}
+Classify the following random variables as discrete or continuous:\newline
+\subproblem{a} X: the number of automobile accidents per year
+in Virginia.\newline
+\newline {\color{violet} $\Rightarrow$ X is {\color{green} discrete}. Because it is limited to 1 year. So, number of accident is finite and it is countable.}
+\newline
+\subproblem{b} Y: the length of time to play 18 holes of golf.\newline
+\newline {\color{violet} $\Rightarrow$ Y is {\color{green} continuous}. Because the length of time to play can infinite number of values and it is interval.}
+\newline
+\subproblem{c} M: the amount of milk produced yearly by a particular cow.\newline
+\newline {\color{violet} $\Rightarrow$ M is {\color{green} continuous}. Because number of particular cow can infinite number of values and it is unspecified.}
+\newline
+\subproblem{d} N: the number of eggs laid each month by a hen.\newline
+\newline {\color{violet} $\Rightarrow$ N is {\color{green} discrete}. Because it is limited to 1 month. So, number of eggs is finite and it is countable.}
+\newline
+\subproblem{e} P: the number of building permits issued each
+month in a certain city.\newline
+\newline {\color{violet} $\Rightarrow$ N is {\color{green} discrete}. Because it is limited to 1 month. So, the number of buildings is finite and it is countable.}
+
+\newpage
+
+\problem{5: Probability Distributions of Random Variables}{5+5+5+5=20}
+An investment firm offers its customers municipal bonds that mature after varying numbers of years. Given that the cumulative distribution function of T , the number of years to maturity for a randomly selected bond, is\newline
+F(t) =     $\left\{ 
+                \begin{array}{rcl}
+                     0, & t < 1, \\
+                     &\\
+                      \frac{1}{4}, & 1 \leq t < 3,\\
+                      &\\
+                      \frac{1}{2}, & 3 \leq t < 5,\\
+                      &\\
+                      \frac{3}{4}, & 5 \leq t < 7,\\
+                      &\\
+                      1, & t \geq 7
+                 \end{array}
+            \right.$
+
+
+
+Find
+\subproblem{a} P(T = 5)\newline
+\newline {\color{violet} $\Rightarrow$ P(T $=$ 5) $=$ P(T $\leq$ 5) $-$ P(T $<$ 5)}
+\newline {\color{violet} $\Rightarrow$ $=$ F(5) $-$  $\lim_{t \to 5-} F(t)$}
+\newline \newline {\color{olive} $\Rightarrow$ F(5) $=$ $\frac{3}{4}$ for $5 \leq t < 7$}
+\newline {\color{olive} $\Rightarrow$ F(t) $=$ $\frac{1}{2}$ for $3 \leq t < 5$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$ $\frac{3}{4}$ $-$ $\frac{1}{2}$ $=$ $\frac{1}{4}$}
+\newline \newline {\color{green} $\Rightarrow$ Result: $\frac{1}{4}$}
+\newline
+\subproblem{b} P(T $>$ 3)\newline
+\newline {\color{violet} $\Rightarrow$ P(T $>$ 3) $=$ 1 $-$ P(T $\leq$ 3)}
+\newline {\color{violet} $\Rightarrow$ $=$ 1 $-$  $\lim_{t \to 3} F(t)$}
+\newline \newline {\color{olive} $\Rightarrow$ F(3) $=$ $\frac{1}{2}$ for $3 \leq t < 5$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$ 1 $-$ $\frac{1}{2}$ $=$ $\frac{1}{2}$}
+\newline \newline {\color{green} $\Rightarrow$ Result: $\frac{1}{2}$}
+\newline
+\subproblem{c} P(1.4 $<$ T $<$ 6)\newline
+\newline {\color{violet} $\Rightarrow$ P(1.4 $<$ T $<$ 6) $=$ P(T $<$ 6) $-$ P(T $\leq$ 1.4)}
+\newline {\color{violet} $\Rightarrow$ $=$ $\lim_{t \to 6-} F(t)$ $-$ F(1.4)}
+\newline \newline {\color{olive} $\Rightarrow$ F(t) $=$ $\frac{3}{4}$ for $5 \leq t < 7$}
+\newline {\color{olive} $\Rightarrow$ F(1.4) $=$ $\frac{1}{4}$ for $1 \leq t < 3$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$ $\frac{3}{4}$ $-$ $\frac{1}{4}$ $=$ $\frac{2}{4}$}
+\newline \newline {\color{green} $\Rightarrow$ Result: $\frac{1}{2}$}
+\newline
+\subproblem{d} P(T $\leq$ 5 $|$ T $\geq$ 2)\newline
+\newline {\color{violet} $\Rightarrow$ P(T $\leq$ 5 $|$ T $\geq$ 2) $=$ P(T $\leq$ 5 $\cap$ T $\geq$ 2) $/$ P(T $\geq$ 2)}
+\newline {\color{violet} $\Rightarrow$ $=$ P(2 $\leq$ T $\leq$ 5) $/$ (1 $-$ P(T $<$ 2))}
+\newline {\color{violet} $\Rightarrow$ $=$ (P(T $\leq$ 5) $-$ P(T $<$ 2)) $/$ (1 $-$ P(T $<$ 2))}
+\newline {\color{violet} $\Rightarrow$ $=$ (F(5) $-$ $\lim_{t \to 2-} F(t)$) $/$ (1 $-$ $\lim_{t \to 2-} F(t)$)}
+\newline \newline {\color{olive} $\Rightarrow$ F(5) $=$ $\frac{3}{4}$ for $5 \leq t < 7$}
+\newline \newline {\color{olive} $\Rightarrow$ F(t) $=$ $\frac{1}{4}$ for $1 \leq t < 3$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$ ($\frac{3}{4}$ $-$ $\frac{1}{4}$) $/$ (1 $-$ $\frac{1}{4}$) $=$ $\frac{2}{4}$ $/$ $\frac{3}{4}$ $=$ $\frac{2}{3}$}
+\newline \newline {\color{green} $\Rightarrow$ Result: $\frac{2}{3}$}
+\newline
+\newline
+\problem{6: Probability Distributions of Random Variables}{5+5+10=20}
+A manufacturer is aware that the weight of the product in the box varies slightly from box to box. There is a density function which is obtained from historical data. The density function describes the probability structure for the weight (inounces). Letting X be the random variable weight, inounces, the density function can be described as\newline
+\newline
+
+f(x) =     $\left\{ 
+                \begin{array}{rcl}
+                     \frac{2}{5}, & 23.75 \leq x \leq 26.25 \\
+                              &\\
+                      0, & elsewhere
+                 \end{array}
+            \right.$
+\newline
+\subproblem{a} Verify that this is a valid density function.\newline
+\newline {\color{olive} $\blacklozenge$ It has to be $\int_{-\infty}^{\infty} f(x) dx$ $=$ 1}
+\newline \newline {\color{violet} $\Rightarrow$ $\int_{-\infty}^{\infty} f(x) dx$ $=$ $\int_{23.75}^{26.25} \frac{2}{5} dx$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$ $x\Bigm|_{23.75}^{26.25}$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$.(26.25 $-$ 23.75) $=$ 1}
+\newline \newline {\color{teal} $\blacklozenge$ $\int_{-\infty}^{\infty} f(x) dx$ $=$ 1, Because it is satisfies the condition, it is valid density function.}
+\newline
+\subproblem{b} Determine the probability that the weight is smaller than 24 ounces.\newline
+\newline {\color{olive} $\blacklozenge$ Find P(x $<$ 24).}
+\newline \newline {\color{violet} $\Rightarrow$ P(x $<$ 24) $=$ $\int_{-\infty}^{24} f(x) dx$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\int_{23.75}^{24} \frac{2}{5} dx$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$ $x\Bigm|_{23.75}^{24}$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$.(24 $-$ 23.75) $=$ 0.1}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.1}
+\newline
+\subproblem{c} The company desires that the weight exceeding 26 ounces be an extremely rare occurrence. What is the probability that this rare occurrence does actually occur?\newline
+\newline {\color{olive} $\blacklozenge$ Find P(x $>$ 26).}
+\newline \newline {\color{violet} $\Rightarrow$ P(x $>$ 26) $=$ $\int_{26}^{\infty} f(x) dx$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\int_{26}^{26.25} \frac{2}{5} dx$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$ $x\Bigm|_{26}^{26.25}$}
+\newline \newline {\color{violet} $\Rightarrow$ $=$  $\frac{2}{5}$.(26.25 $-$ 26) $=$ 0.1}
+\newline \newline {\color{green} $\Rightarrow$ Result: 0.1}
+\newline
+\end{document}
